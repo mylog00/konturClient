@@ -44,5 +44,6 @@ public class Client implements Closeable {
     public void close() throws IOException {
         //Закрываем все соединения
         client.close();
+        System.out.println("Client stopped");
     }
 }
