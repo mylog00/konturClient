@@ -21,15 +21,17 @@ public class Client implements Closeable {
         //Поток для получения входных данных от клиента
         BufferedReader in = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
         //Поток для отправки ответа клиенту
-        PrintWriter out = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(this.client.getOutputStream()));
+        out.println(message);
+        out.println();
+        out.flush();
 
-        List<String> answer = new ArrayList<String>(12);
+        List<String> answer = new ArrayList<>(12);
         String line;
         while ((line = in.readLine()) != null) {
             if (line.length() == 0)
                 break;
             answer.add(line);
-            System.out.println(line);
         }
         //Закрываем все соединения
         in.close();
