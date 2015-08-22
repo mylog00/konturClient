@@ -18,13 +18,19 @@ public class MainClient {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             String line = in.readLine();
             List<String> list = client.sendMessage("get " + line);
-            printList(list);
+            MainClient.printList(list);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void printList(List<String> list){
+    /**
+     * Вывод списка строк на экран
+     *
+     * @param list список строк
+     */
+    private static void printList(List<String> list) {
         list.stream().forEach(System.out::println);
+        System.out.println();
     }
 }
