@@ -16,9 +16,17 @@ public class MainClient {
 
         try (Client client = new Client(hostname, port)) {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            String line = in.readLine();
-            List<String> list = client.sendMessage("get " + line);
-            MainClient.printList(list);
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.length() < 1)
+                    continue;
+                if (line.equals("q")) {
+                    break;
+                }
+                List<String> list = client.sendMessage("get " + line);
+                MainClient.printList(list);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,6 +38,7 @@ public class MainClient {
      * @param list список строк
      */
     private static void printList(List<String> list) {
+        System.out.println("Server response");
         list.stream().forEach(System.out::println);
         System.out.println();
     }
