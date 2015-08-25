@@ -38,7 +38,7 @@ public class MainClient {
      * @param list список строк
      */
     private static void printList(List<String> list) {
-        System.out.println("Server response");
+        System.out.println("Server response:");
         list.stream().forEach(System.out::println);
         System.out.println();
     }
